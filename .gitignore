@@ -1,0 +1,94 @@
+# --- ОСНОВНОЕ (Python) ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# --- ОКРУЖЕНИЯ (Environments) ---
+.env
+.env.local
+.env.*
+.venv/
+venv/
+ENV/
+env/
+# Для тех, кто использует Conda
+.conda/
+conda-meta/
+
+# --- ТЕСТЫ И ПОКРЫТИЕ (Testing / Coverage) ---
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+pytest_debug.log
+
+# --- IDE (VS Code, PyCharm, Sublime) ---
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.idea/
+*.swp
+*.swo
+*.sublime-project
+*.sublime-workspace
+
+# --- ЛОГИ И ДАМПЫ ---
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+*.db
+*.sql
+*.dump
+migrations/*.log
+
+# --- DOCKER ---
+.docker/
+# Иногда полезно игнорировать временные файлы compose
+docker-compose.override.yml
+
+# --- СИСТЕМНЫЕ ФАЙЛЫ ---
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# --- КЭШ И ВРЕМЕННОЕ ---
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.ruff_cache/
+.ipynb_checkpoints
+.eslintcache
