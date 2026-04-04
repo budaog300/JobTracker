@@ -34,27 +34,9 @@
 ```json
 {
   "score": 0.72,
-  "summary": "Вакансия в целом подходит кандидату"  
+  "summary": "Здесь развернутый ответ ии-консультанта"  
 }
 ```
-
----
-
-## 🏗️ Архитектура
-
-Проект построен по принципу **Layered Architecture**:
-
-```
-API (роуты)
-↓
-Service (бизнес-логика)
-↓
-Repository (работа с БД)
-↓
-PostgreSQL
-```
-
----
 
 ## 🛠️ Технологии
 
@@ -72,21 +54,54 @@ PostgreSQL
 ### 1. Клонировать репозиторий
 
 ```bash
-git clone https://github.com/your-username/job-tracker.git
-cd job-tracker
+git clone https://github.com/budaog300/JobTracker.git
 ```
 
-### 2. Создать `.env`
+### 2. Создать ⚙️ Переменные окружения
+
+Создайте файл `.env` (или несколько файлов: `.env.db`, `.env.auth`, `.env.ai`) в корне проекта.
+
+### 🗄️ База данных (`.env.db`)
 
 ```env
-DATABASE_URL=postgresql+asyncpg://user:password@db:5432/jobtracker
-SECRET_KEY=your_secret_key
+DB_USER=postgres
+DB_PASSWORD=your_password
+DB_HOST=localhost
+DB_PORT=5432
+DB_NAME=job_tracker_db
 ```
+
+---
+
+### 🔐 Аутентификация (`.env.auth`)
+
+```env
+ACCESS_SECRET_KEY=your_access_secret
+REFRESH_SECRET_KEY=your_refresh_secret
+ALGORITHM=HS256
+```
+
+---
+
+### 🤖 AI (`.env.ai`)
+
+```env
+OPENAI_API_KEY=your_api_key
+BASE_URL=https://api.vsegpt.ru/v1
+```
+
+---
+
+## 📌 Примечания
+
+* ❗ Не добавляйте `.env` файлы в репозиторий (используйте `.gitignore`)
+* 🔒 Используйте безопасные значения для секретных ключей
+* 🐳 При использовании Docker убедитесь, что переменные передаются в контейнер
 
 ### 3. Запуск через Docker
 
 ```bash
-docker-compose up --build
+docker-compose up --build -d
 ```
 
 ---
@@ -97,7 +112,9 @@ docker-compose up --build
 
 * `POST /auth/register` — регистрация
 * `POST /auth/login` — авторизация
-* `GET /auth/me` — текущий пользователь
+* `POST /auth/logout` — авторизация
+* `POST /auth/refresh` — авторизация
+* `GET /auth/profile` — текущий пользователь
 
 ---
 
@@ -105,9 +122,9 @@ docker-compose up --build
 
 * `GET /vacancies` — список вакансий
 * `POST /vacancies` — создать вакансию
-* `GET /vacancies/{id}` — получить вакансию
-* `PUT /vacancies/{id}` — обновить
-* `DELETE /vacancies/{id}` — удалить
+* `GET /vacancies/{vacancy_id}` — получить вакансию
+* `PATCH /vacancies/{vacancy_id}` — обновить
+* `DELETE /vacancies/{vacancy_id}` — удалить
 
 ---
 
@@ -115,22 +132,22 @@ docker-compose up --build
 
 * `POST /companies`
 * `GET /companies`
-* `GET /companies/{id}`
-* `PUT /companies/{id}`
-* `DELETE /companies/{id}`
+* `GET /companies/{vacancy_id}`
+* `PATCH /companies/{vacancy_id}`
+* `DELETE /companies/{vacancy_id}`
 
 ---
 
 ### 📝 Notes
 
-* `POST /vacancies/{id}/notes`
-* `GET /vacancies/{id}/notes`
+* `POST /vacancies/{vacancy_id}/notes`
+* `GET /vacancies/{vacancy_id}/notes`
 
 ---
 
 ### 🤖 AI
 
-* `POST /vacancies/{id}/analyze` — анализ вакансии
+* `POST /vacancies/{vacancy_id}/analyze` — анализ вакансии
 
 ---
 
@@ -155,5 +172,6 @@ docker-compose up --build
 ## 👨‍💻 Автор
 
 Backend-разработчик Python с опытом разработки API и интеграции AI-решений.
+TG: @holly_molly42
 
 ---
