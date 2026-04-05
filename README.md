@@ -66,7 +66,7 @@ git clone https://github.com/budaog300/JobTracker.git
 ```env
 DB_USER=postgres
 DB_PASSWORD=your_password
-DB_HOST=localhost
+DB_HOST=localhost # название контейнера с базой db
 DB_PORT=5432
 DB_NAME=job_tracker_db
 ```
@@ -92,16 +92,10 @@ BASE_URL=https://api.vsegpt.ru/v1
 
 ---
 
-## 📌 Примечания
-
-* ❗ Не добавляйте `.env` файлы в репозиторий (используйте `.gitignore`)
-* 🔒 Используйте безопасные значения для секретных ключей
-* 🐳 При использовании Docker убедитесь, что переменные передаются в контейнер
-
 ### 3. Запуск через Docker
 
 ```bash
-docker-compose up --build -d
+docker-compose --env-file .env.db up -d --build
 ```
 
 ---
@@ -154,7 +148,7 @@ docker-compose up --build -d
 ## 📊 Модель данных
 
 * **User** — пользователь системы
-* **Company** — компания (привязана к пользователю)
+* **Company** — компания
 * **Vacancy** — вакансия
 * **Note** — заметки
 * **AiAnalysis** — результат AI-анализа

@@ -1,21 +1,32 @@
-# Python
-__pycache__/
-*.py[cod]
-*$py.class
-.venv/
-venv/
-ENV/
-env/
-
-# IDE
+# Git и IDE (не нужны внутри образа)
+.git
+.gitignore
 .vscode/
 .idea/
 
-# Docker & Git
-.git
-.gitignore
+# Python (мусор и кэш)
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Виртуальное окружение (в образе будет своё через pip install)
+.venv/
+venv/
+env/
+
+# Окружение и секреты (МЫ ПРОКИДЫВАЕМ ИХ ЧЕРЕЗ COMPOSE, А НЕ COPY)
+.env
+.env.*
+
+# Базы данных и логи
+*.db
+*.sqlite3
+*.log
+
+# Инфраструктура (сам Dockerfile внутри образа не нужен)
 Dockerfile
 docker-compose.yml
-
-# Environments
-.env
+.dockerignore
